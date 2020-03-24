@@ -107,3 +107,11 @@ target_link_libraries(sample_squares
         ${OpenCL_LIBRARY}
         dl
         )
+
+add_executable(sample_tvl1_optical_flow samples/sample_tvl1_optical_flow.cpp)
+target_link_libraries(sample_tvl1_optical_flow
+        ${PROJECT_NAME}
+        ${OpenCV_LIBS}
+        ${OpenCL_LIBRARY}
+        dl
+        )
