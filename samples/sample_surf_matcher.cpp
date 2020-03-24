@@ -3,12 +3,13 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/ocl/ocl.hpp"
-#include "opencv2/nonfree/ocl.hpp"
+//#include "opencv2/nonfree/ocl.hpp"
 #include "opencv2/calib3d/calib3d.hpp"
-#include "opencv2/nonfree/nonfree.hpp"
+#include <opencv2/xfeatures2d/nonfree.hpp>
 
 using namespace cv;
 using namespace cv::ocl;
+using namespace std;
 
 const int LOOP_NUM = 10;
 const int GOOD_PTS_MAX = 50;
@@ -209,7 +210,7 @@ int main(int argc, char* argv[])
     oclMat descriptors1GPU, descriptors2GPU;
 
     //instantiate detectors/matchers
-    SURFDetector<SURF>     cpp_surf;
+    SURFDetector<cv::SURF>     cpp_surf;
     SURFDetector<SURF_OCL> ocl_surf;
 
     SURFMatcher<BFMatcher>      cpp_matcher;

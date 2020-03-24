@@ -91,3 +91,19 @@ ${OpenCV_LIBS}
 ${OpenCL_LIBRARY}
 dl
 )
+
+#add_executable(sample_surf_matcher samples/sample_surf_matcher.cpp)
+#target_link_libraries(sample_surf_matcher
+#        ${PROJECT_NAME}
+#        ${OpenCV_LIBS}
+#        ${OpenCL_LIBRARY}
+#        dl
+#        )
+
+add_executable(sample_squares samples/sample_squares.cpp)
+target_link_libraries(sample_squares
+        ${PROJECT_NAME}
+        ${OpenCV_LIBS}
+        ${OpenCL_LIBRARY}
+        dl
+        )

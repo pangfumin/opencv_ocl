@@ -276,21 +276,17 @@ static Mat drawSquaresBoth( const Mat& image,
 
 int main(int argc, char** argv)
 {
-    const char* keys =
-        "{ i | input   |                    | specify input image }"
-        "{ o | output  | squares_output.jpg | specify output save path}";
-    CommandLineParser cmd(argc, argv, keys);
-    string inputName = cmd.get<string>("i");
-    string outfile = cmd.get<string>("o");
+
+    std::string inputName ="/home/pang/software/opencv_ocl/data/pic5.png";
     if(inputName.empty())
     {
         cout << "Avaible options:" << endl;
-        cmd.printParams();
+//        cmd.printParams();
         return 0;
     }
 
-    vector<ocl::Info> info;
-    CV_Assert(ocl::getDevice(info));
+//    vector<ocl::Info> info;
+//    CV_Assert(ocl::getDevice(info));
     int iterations = 10;
     namedWindow( wndname, 1 );
     vector<vector<Point> > squares_cpu, squares_ocl;
@@ -331,8 +327,8 @@ int main(int argc, char** argv)
 
     Mat result = drawSquaresBoth(image, squares_cpu, squares_ocl);
     imshow(wndname, result);
-    imwrite(outfile, result);
-    cvWaitKey(0);
+//    imwrite(outfile, result);
+    cv::waitKey(0);
 
     return 0;
 }
