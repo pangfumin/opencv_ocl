@@ -45,7 +45,7 @@
 
 #include "precomp.hpp"
 #include "opencl_kernels.hpp"
-
+#include <opencv2/core/hal/hal.hpp>
 using namespace cv;
 using namespace cv::ocl;
 
@@ -81,7 +81,7 @@ public:
 
         for ( int i = begin; i<end; i++ )
         {
-            tdist2[i] = std::min(normL2Sqr_(data + step*i, data + stepci, dims), dist[i]);
+            tdist2[i] = std::min(cv::hal::normL2Sqr_(data + step*i, data + stepci, dims), dist[i]);
         }
     }
 
@@ -115,7 +115,7 @@ static void generateCentersPP(const Mat& _data, Mat& _out_centers,
 
     for( i = 0; i < N; i++ )
     {
-        dist[i] = normL2Sqr_(data + step*i, data + step*centers[0], dims);
+        dist[i] = cv::hal::normL2Sqr_(data + step*i, data + step*centers[0], dims);
         sum0 += dist[i];
     }
 
@@ -384,7 +384,7 @@ double cv::ocl::kmeans(const oclMat &_src, int K, oclMat &_bestLabels,
                         if( labels[i] != max_k )
                             continue;
                         sample = data.ptr<float>(i);
-                        double dist = normL2Sqr_(sample, _old_center, dims);
+                        double dist = cv::hal::normL2Sqr_(sample, _old_center, dims);
 
                         if( max_dist <= dist )
                         {

@@ -20,7 +20,7 @@ ${OpenCL_INCLUDE_DIR})
 
 add_library(${PROJECT_NAME}
     src/tvl1flow.cpp
-    # src/svm.cpp
+#     src/svm.cpp
     src/stereo_csbp.cpp
     src/stereobp.cpp
     src/stereobm.cpp
@@ -38,19 +38,19 @@ add_library(${PROJECT_NAME}
     src/mcwutil.cpp
     src/matrix_operations.cpp
     src/match_template.cpp
-    # src/knearest.cpp
-    # src/kmeans.cpp
+#     src/knearest.cpp
+     src/kmeans.cpp
     src/kalman.cpp
     src/interpolate_frames.cpp
     src/imgproc.cpp
-    # src/hog.cpp
-    # src/haar.cpp
-    src/gftt.cpp
-    # src/gemm.cpp
+     src/hog.cpp
+#     src/haar.cpp
+#    src/gftt.cpp
+     src/gemm.cpp
     src/filtering.cpp
-    # src/fft.cpp
+     src/fft.cpp
     src/error.cpp
-    # src/columnsum.cpp
+     src/columnsum.cpp
     src/color.cpp
     src/cl_runtime
     src/cl_programcache.hpp
@@ -61,7 +61,7 @@ add_library(${PROJECT_NAME}
     src/build_warps.cpp
     src/brute_force_matcher.cpp
     src/blend.cpp
-    # src/bgfg_mog.cpp
+     src/bgfg_mog.cpp
     src/arithm.cpp
     src/opencl_kernels.cpp
     # src/cl_runtime/clamdblas_runtime.cpp  
