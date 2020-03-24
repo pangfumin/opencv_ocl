@@ -4,13 +4,8 @@ project(ocl_module)
 
 
 
-find_package(OpenCV 3.0 QUIET)
-# if(NOT OpenCV_FOUND)
-#    find_package(OpenCV 2.4.3 QUIET)
-#    if(NOT OpenCV_FOUND)
-#       message(FATAL_ERROR "OpenCV > 2.4.3 not found.")
-#    endif()
-# endif()
+find_package(OpenCV 3.3 QUIET)
+
 
 find_package(OpenCL 1.2 QUIET)
 if(NOT OpenCL_FOUND)
@@ -26,12 +21,12 @@ ${OpenCL_INCLUDE_DIR})
 add_library(${PROJECT_NAME}
     src/tvl1flow.cpp
     # src/svm.cpp
-    # src/stereo_csbp.cpp
-    # src/stereobp.cpp
-    # src/stereobm.cpp
-    # src/split_merge.cpp
-    # src/sort_by_key.cpp
-    # src/safe_call.hpp
+    src/stereo_csbp.cpp
+    src/stereobp.cpp
+    src/stereobm.cpp
+    src/split_merge.cpp
+    src/sort_by_key.cpp
+    src/safe_call.hpp
     src/pyrup.cpp
     src/pyrlk.cpp
     src/pyrdown.cpp
@@ -62,10 +57,10 @@ add_library(${PROJECT_NAME}
     src/cl_programcache.cpp
     src/cl_operations.cpp
     src/cl_context.cpp
-    # src/canny.cpp
+    src/canny.cpp
     src/build_warps.cpp
-    # src/brute_force_matcher.cpp
-    # src/blend.cpp
+    src/brute_force_matcher.cpp
+    src/blend.cpp
     # src/bgfg_mog.cpp
     src/arithm.cpp
     src/opencl_kernels.cpp
@@ -80,16 +75,17 @@ ${OpenCL_LIBRARY}
 dl
 )
 
-add_executable(pyrlk_optical_flow samples/pyrlk_optical_flow.cpp)
-target_link_libraries(pyrlk_optical_flow
+add_executable(sample_optical_flow samples/sample_optical_flow.cpp)
+target_link_libraries(sample_optical_flow
     ${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${OpenCL_LIBRARY}
 dl
 )
 
-add_executable(test_optical_flow samples/test_optical_flow.cpp)
-target_link_libraries(test_optical_flow
+
+add_executable(sample_stereo_match samples/sample_stereo_match.cpp)
+target_link_libraries(sample_stereo_match
     ${PROJECT_NAME}
 ${OpenCV_LIBS}
 ${OpenCL_LIBRARY}

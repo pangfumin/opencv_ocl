@@ -38,17 +38,21 @@ using namespace cv::ocl;
 
  int main() {
      bool useGray = true; 
-    cv::Mat frame0 = cv::imread("/home/pang/software/opencv-2.4.13.6/samples/gpu/tsucuba_left.png", useGray ? cv::IMREAD_GRAYSCALE : cv::IMREAD_COLOR);
+    cv::Mat frame0 = cv::imread("/home/pang/dataset/euroc/MH_01_easy/mav0/cam0/data/1403636696463555584.png", useGray ? cv::IMREAD_GRAYSCALE : cv::IMREAD_COLOR);
     // ASSERT_FALSE(frame0.empty());
 
-    cv::Mat frame1 = cv::imread("/home/pang/software/opencv-2.4.13.6/samples/gpu/tsucuba_right.png", useGray ? cv::IMREAD_GRAYSCALE : cv::IMREAD_COLOR);
+    cv::Mat frame1 = cv::imread("/home/pang/dataset/euroc/MH_01_easy/mav0/cam1/data/1403636696463555584.png", useGray ? cv::IMREAD_GRAYSCALE : cv::IMREAD_COLOR);
     // ASSERT_FALSE(frame1.empty());
 
+    cv::resize(frame0, frame0, cv::Size(2 * frame0.cols, 2 * frame0.rows));
+    cv::resize(frame1, frame1, cv::Size(2 * frame1.cols, 2 * frame1.rows));
     cv::Mat gray_frame;
     if (useGray)
         gray_frame = frame0;
     else
         cv::cvtColor(frame0, gray_frame, cv::COLOR_BGR2GRAY);
+
+   
 
     std::vector<cv::Point2f> pts;
     cv::goodFeaturesToTrack(gray_frame, pts, 1000, 0.01, 0.0);
@@ -133,7 +137,7 @@ using namespace cv::ocl;
     std::cout << "bad_ratio: " << bad_ratio << std::endl;
 
     cv::imshow("track", blend_image);
-    cv::waitKey();
+    cv::waitKey(1);
 
     // ASSERT_LE(bad_ratio, 0.02f);
     return 0;
